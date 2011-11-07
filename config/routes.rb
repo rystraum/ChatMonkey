@@ -1,5 +1,5 @@
 Chat::Application.routes.draw do
-  get "msgs/create"
+  get "msgs/fetch"
 
   devise_for :users do
     root :to => "chatrooms#index"
