@@ -1,8 +1,6 @@
 Chat::Application.routes.draw do
-  get "users/home"
-
   devise_for :users do
-    root :to => "users#home"
+    root :to => "chatrooms#index"
   end
 
   resources :users do
