@@ -1,8 +1,9 @@
 class ChatroomsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /chatrooms
   # GET /chatrooms.json
   def index
-    @chatrooms = Chatroom.all
+    @chatrooms = current_user.chatrooms.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +25,7 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms/new
   # GET /chatrooms/new.json
   def new
-    @chatroom = Chatroom.new
+    @chatroom = current_user.chatrooms.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,10 +41,10 @@ class ChatroomsController < ApplicationController
   # POST /chatrooms
   # POST /chatrooms.json
   def create
-    @chatroom = Chatroom.new(params[:chatroom])
+    @chatroom = current_user.chatrooms.build(params[:chatroom])
 
     respond_to do |format|
-      if @chatroom.save
+      if current_user.chatrooms << @chatroom
         format.html { redirect_to @chatroom, notice: 'Chatroom was successfully created.' }
         format.json { render json: @chatroom, status: :created, location: @chatroom }
       else
