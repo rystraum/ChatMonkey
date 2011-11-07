@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107065452) do
+ActiveRecord::Schema.define(:version => 20111107080635) do
 
   create_table "chatrooms", :force => true do |t|
     t.string   "topic"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 20111107065452) do
   create_table "chatrooms_users", :id => false, :force => true do |t|
     t.integer "chatroom_id"
     t.integer "user_id"
+  end
+
+  create_table "msgs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "chatroom_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
