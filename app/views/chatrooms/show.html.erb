@@ -7,3 +7,16 @@
   <%= @chatroom.topic %>
 </p>
 
+<p>Messages:</p>
+<dl>
+<% @chatroom.msgs.each do |msg| %>
+  <dt>&lt;<%= msg.created_at %>&gt;<%= msg.user.email %></dt>
+  <dd><%= msg.message %></dd>
+<% end %>
+</dl>
+
+<%= form_for [@chatroom,@chatroom.msgs.build] do |f| %>
+  <%= f.text_area :message %>
+  <%= f.submit %>
+<% end %>
+

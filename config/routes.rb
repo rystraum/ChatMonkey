@@ -1,4 +1,6 @@
 Chat::Application.routes.draw do
+  get "msgs/create"
+
   devise_for :users do
     root :to => "chatrooms#index"
   end
@@ -7,7 +9,11 @@ Chat::Application.routes.draw do
     resources :chatrooms
   end
 
-  resources :chatrooms
+  resources :chatrooms do
+    resources :msgs
+  end
+
+  resources :msgs
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
