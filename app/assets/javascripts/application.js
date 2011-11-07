@@ -6,4 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require autoresize
+//= require color
 //= require_tree .
+
