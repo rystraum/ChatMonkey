@@ -1,10 +1,9 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_chatroom_path(@chatroom) %> |
+<%= link_to 'Back', chatrooms_path %>
 
 <p>
   <b>Topic:</b>
   <%= @chatroom.topic %>
 </p>
 
-
-<%= link_to 'Edit', edit_chatroom_path(@chatroom) %> |
-<%= link_to 'Back', chatrooms_path %>
