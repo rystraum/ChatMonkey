@@ -1,4 +1,6 @@
 Chat::Application.routes.draw do
+  get "users/create"
+
   get "msgs/fetch"
 
   devise_for :users do
@@ -11,6 +13,7 @@ Chat::Application.routes.draw do
 
   resources :chatrooms do
     resources :msgs
+    resources :users
   end
 
   resources :msgs
