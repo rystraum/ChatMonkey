@@ -9,6 +9,7 @@ Chat::Application.routes.draw do
     resources :chatrooms
   end
 
+  resources :chatrooms
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
