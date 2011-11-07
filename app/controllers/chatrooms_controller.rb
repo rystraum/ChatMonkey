@@ -3,7 +3,7 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms
   # GET /chatrooms.json
   def index
-    @chatrooms = current_user.chatrooms.all
+    @chatrooms = Chatroom.all
 
     respond_to do |format|
       format.html # index.html.erb

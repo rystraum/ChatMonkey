@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Edit', edit_chatroom_path(@chatroom) %> |
+<%= link_to 'Edit', edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom %> |
 <%= link_to 'Back', chatrooms_path %>
 
 <p>
