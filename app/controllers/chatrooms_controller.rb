@@ -1,5 +1,7 @@
 class ChatroomsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :user_is_owner, :only => [:edit, :update, :destroy]
+
   # GET /chatrooms
   # GET /chatrooms.json
   def index
@@ -35,7 +37,6 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms/1/edit
   def edit
-    @chatroom = Chatroom.find(params[:id])
   end
 
   # POST /chatrooms
@@ -57,8 +58,6 @@ class ChatroomsController < ApplicationController
   # PUT /chatrooms/1
   # PUT /chatrooms/1.json
   def update
-    @chatroom = Chatroom.find(params[:id])
-
     respond_to do |format|
       if @chatroom.update_attributes(params[:chatroom])
         format.html { redirect_to @chatroom, notice: 'Chatroom was successfully updated.' }
@@ -73,12 +72,17 @@ class ChatroomsController < ApplicationController
   # DELETE /chatrooms/1
   # DELETE /chatrooms/1.json
   def destroy
-    @chatroom = Chatroom.find(params[:id])
     @chatroom.destroy
 
     respond_to do |format|
       format.html { redirect_to chatrooms_url }
       format.json { head :ok }
     end
+  end
+
+private
+  def user_is_owner
+    @chatroom = Chatroom.find(params[:id])
+    redirect_to root_path, :flash => { :notice => "You don't own that" } unless current_user.chatrooms.include? @chatroom
   end
 end
