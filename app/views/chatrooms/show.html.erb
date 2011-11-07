@@ -8,7 +8,7 @@
 </p>
 
 <p id="chatroom-id" style="display:none"><%= @chatroom.id %></p>
-<p id="last-msg-id" style="display:none"><%= @chatroom.msgs.last.id unless @chatroom.msgs.empty? %></p>
+<p id="last-msg-id" style="display:none"><%= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0 %></p>
 
 <%= form_for [@chatroom,Msg.new] do |f| %>
   <%= f.text_area :message, :rows => 1, :tabindex => 1 %>
