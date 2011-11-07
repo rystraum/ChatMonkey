@@ -7,6 +7,13 @@
   <%= @chatroom.topic %>
 </p>
 
+<p>
+  <b>Members:</b>
+  <% @chatroom.users.each do |u| %>
+    <%= u.email %>,
+  <% end %>
+</p>
+
 <p id="chatroom-id" style="display:none"><%= @chatroom.id %></p>
 <p id="last-msg-id" style="display:none"><%= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0 %></p>
 
@@ -24,4 +31,9 @@
 </dl>
 <% end %>
 </div>
+
+<%= form_for [@chatroom, @chatroom.users.new] do |f| %>
+  <%= f.text_field :email %>
+  <%= f.submit "Invite" %>
+<% end %>
 

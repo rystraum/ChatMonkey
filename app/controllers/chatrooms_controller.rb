@@ -1,11 +1,12 @@
 class ChatroomsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :user_is_owner, :only => [:edit, :update, :destroy]
+  before_filter :user_is_allowed, :only => [:show]
 
   # GET /chatrooms
   # GET /chatrooms.json
   def index
-    @chatrooms = Chatroom.all
+    @chatrooms = current_user.chatrooms.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,8 +17,6 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms/1
   # GET /chatrooms/1.json
   def show
-    @chatroom = Chatroom.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @chatroom }
@@ -84,5 +83,10 @@ private
   def user_is_owner
     @chatroom = Chatroom.find(params[:id])
     redirect_to root_path, :flash => { :notice => "You don't own that" } unless current_user.chatrooms.include? @chatroom
+  end
+
+  def user_is_allowed
+    @chatroom = Chatroom.find(params[:id])
+    redirect_to root_path, :flash => { :notice => "You don't have permission to see this" } unless @chatroom.users.include? current_user
   end
 end
