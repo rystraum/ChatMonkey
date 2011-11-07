@@ -1,10 +1,12 @@
 Chat::Application.routes.draw do
-  resources :chatrooms
-
   get "users/home"
 
   devise_for :users do
     root :to => "users#home"
+  end
+
+  resources :users do
+    resources :chatrooms
   end
 
   # The priority is based upon order of creation:
