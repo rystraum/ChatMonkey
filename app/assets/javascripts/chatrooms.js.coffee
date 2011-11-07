@@ -56,19 +56,18 @@ sendMessage = () ->
   params = $("#new_msg").serialize()
   console.log params
   $.post(url,params,() ->
+    $("#msg_message").val("")
     updateChatroom()
-    $("textarea").html(" ")
   )
 
 $(document).ready ->
   setInterval(updateChatroom, 10000)
 
-  $("textarea").autoResize()
-  $("textarea").keypress (event) ->
+  $("#msg_message").autoResize()
+  $("#msg_message").keypress (event) ->
     notNewAnymore()
     if event.ctrlKey and (event.keyCode == 13 or event.keyCode == 10)
       $("#send-message").click()
-
 
   $("#send-message").click( (event) ->
     event.preventDefault()
