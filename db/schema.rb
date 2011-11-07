@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20111107065452) do
     t.datetime "updated_at"
   end
 
-  create_table "chatrooms_users", :force => true do |t|
+  create_table "chatrooms_users", :id => false, :force => true do |t|
     t.integer "chatroom_id"
     t.integer "user_id"
   end
