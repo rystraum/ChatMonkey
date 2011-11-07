@@ -1,4 +1,6 @@
 Chat::Application.routes.draw do
+  resources :chatrooms
+
   get "users/home"
 
   devise_for :users do
