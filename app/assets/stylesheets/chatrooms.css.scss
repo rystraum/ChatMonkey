@@ -1,3 +1,23 @@
 // Place all the styles related to the chatrooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+dl {
+  dt {
+  }
+  .timestamp {
+    font-size: 0.75em;
+  }
+}
+
+form {
+  clear: both;
+  textarea {
+    height: 30px;
+  }
+}
+
+.latest {
+  background-color: #fffff;
+}
+
