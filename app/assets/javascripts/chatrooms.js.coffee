@@ -60,8 +60,16 @@ sendMessage = () ->
     updateChatroom()
   )
 
+isEmpty = ( inputStr ) ->
+  if ( null == inputStr || "" == inputStr )
+    return true
+  else
+    return false
+
 $(document).ready ->
-  setInterval(updateChatroom, 10000)
+
+  if(not isEmpty($("#last-msg-id").html()) and not isEmpty($("#messages-list").html()))
+    setInterval(updateChatroom, 10000)
 
   $("#msg_message").autoResize()
   $("#msg_message").keypress (event) ->
