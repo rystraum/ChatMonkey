@@ -38,10 +38,8 @@ updateChatroom = () ->
     last = msg_id
     $.each(data, (key, val) ->
       email = val.user.email.split("@")[0]
-      console.log email
       html = '<dl class="latest"><dt>' + val.message + '</dt><dd class="latest">' + email + '<span class="timestamp">' + val.created_at + '</span></dd></dl>'
       items.push(html)
-      console.log items
       if val.id > last
         last = val.id
     )
@@ -54,7 +52,6 @@ sendMessage = () ->
   chatroom_id = $("#chatroom-id").html()
   url = "/chatrooms/" + chatroom_id + "/msgs.js"
   params = $("#new_msg").serialize()
-  console.log params
   $.post(url,params,() ->
     $("#msg_message").val("")
     updateChatroom()
