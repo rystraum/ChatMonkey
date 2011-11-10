@@ -14,6 +14,7 @@ class MsgsController < ApplicationController
     @msgs = Msg.find_by_sql ("SELECT * FROM msgs WHERE id > '#{params[:msg_id]}' AND chatroom_id = '#{params[:chatroom_id]}'")
     @msgs.each do |m|
       m[:user] = User.find(m.user_id)
+      m[:created_at_in_local] = m.created_at_in_local
     end
 
     respond_to do |format|

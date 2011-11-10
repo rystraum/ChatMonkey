@@ -27,7 +27,7 @@
 <% @chatroom.msgs.reverse.each do |msg| %>
 <dl>
   <dt><%= msg.message %></dt>
-  <dd><%= msg.user.email.split("@").first %> <span class="timestamp"><%= msg.created_at %></span></dd>
+  <dd><%= msg.user.email.split("@").first %> <span class="timestamp"><%= msg.created_at_in_local %></span></dd>
 </dl>
 <% end %>
 </div>
