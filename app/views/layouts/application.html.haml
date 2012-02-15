@@ -6,8 +6,11 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    = render "shared/topmenu"
-    = render "shared/messages"
+    .topmenu
+      = render "shared/topmenu"
 
-    = yield
+    #main.container_16
+      = render "shared/messages"
+
+      = yield
 

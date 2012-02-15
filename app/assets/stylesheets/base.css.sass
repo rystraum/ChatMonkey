@@ -1,0 +1,19 @@
+@import "variables"
+
+a
+  text-decoration: none
+
+.topmenu
+  text-align: right
+  background-color: rgba(0,0,0,0.8)
+  padding: 10px 0
+  >a
+    @include round-corners
+    padding: 5px 10px
+    margin: 0 5px
+    background: $diy_brown
+    color: white
+    &:hover
+      background-color: white
+      color: $diy_brown
+
