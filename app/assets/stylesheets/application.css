@@ -8,5 +8,6 @@
  *= require "formalize"
  *= require "base"
  *= require_self
+ *= require_tree .
 */
 
