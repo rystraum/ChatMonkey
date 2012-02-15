@@ -8,16 +8,25 @@ a
   background-color: rgba(0,0,0,0.7)
   padding: 10px 0
   margin-bottom: 20px
-  >a
-    @include round-corners
-    padding: 5px 10px
-    margin: 0 5px
-    background: $chatmonkey_peach
-    color: black
-    text-shadow: #CCC 0 1px 1px
-    &:hover
-      background-color: white
-      color: $diy_brown
+  >.logo
+    @include round-corners(3px)
+    float: left
+    background-color: white
+    margin-left: 20px
+    padding: 2px
+    img
+      max-height: 20px
+  >.menu
+    >a
+      @include round-corners
+      padding: 5px 10px
+      margin: 0 5px
+      background-color: $chatmonkey_peach
+      color: black
+      text-shadow: #CCC 0 1px 1px
+      &:hover
+        background-color: white
+        color: $diy_brown
 
 .flash
   @include round-corners
