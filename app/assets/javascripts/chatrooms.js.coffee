@@ -38,7 +38,7 @@ updateChatroom = () ->
     last = msg_id
     $.each(data, (key, val) ->
       email = val.user.email.split("@")[0]
-      html = '<dl class="latest"><dt>' + val.message + '</dt><dd class="latest">' + email + '<span class="timestamp">' + val.created_at + '</span></dd></dl>'
+      html = '<dl class="latest"><dt>' + val.message + '</dt><dd class="latest">' + email + '<span class="timestamp">' + val.created_at_in_local + '</span></dd></dl>'
       items.push(html)
       if val.id > last
         last = val.id

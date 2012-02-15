@@ -1,0 +1,103 @@
+$main_background_image: 'noise_bg.png'
+
+$full_width: 940px
+$gutter_width: 10px
+
+$primary_font: 'Comfortaa','Ubuntu',cursive
+$major_font: 'Convergence','Ubuntu',sans-serif
+$minor_font: 'Helvetica','Arial',sans-serif
+
+$discount_numbers: rgb(255,255,255)
+$minor_text: #6bc7da
+
+$campaign_side_color: #272727
+$campaign_box_height: 350px
+
+$top-bg-color: #323232
+$top-text-color: #FFF
+
+$default_rounded_amount: 5px
+$diy_brown: #6C5144
+$diy_orange: #FD6616
+$chatmonkey_peach: #FEC15A
+$chatmonkey_brown: #583D30
+
+// Round corner at position by amount.
+@mixin round-corner($position, $amount: $default_rounded_amount)
+  border-#{$position}-radius: $amount
+  -webkit-border-#{$position}-radius: $amount
+
+@mixin round-corner-mozilla($position, $amount: $default_rounded_amount)
+  -moz-border-radius-#{$position}: $amount
+
+// Round left corners by amount
+@mixin round-left-corners($amount: $default_rounded_amount)
+  @include round-corner("top-left", $amount)
+  @include round-corner("bottom-left", $amount)
+  @include round-corner-mozilla("topleft", $amount)
+  @include round-corner-mozilla("bottomleft", $amount)
+
+// Round right corners by amount
+@mixin round-right-corners($amount: $default_rounded_amount)
+  @include round-corner("top-right", $amount)
+  @include round-corner("bottom-right", $amount)
+  @include round-corner-mozilla("topright", $amount)
+  @include round-corner-mozilla("bottomright", $amount)
+
+// Round top corners by amount
+@mixin round-top-corners($amount: 5px)
+  @include round-corner("top-left", $amount)
+  @include round-corner("top-right", $amount)
+  @include round-corner-mozilla("topleft", $amount)
+  @include round-corner-mozilla("topright", $amount)
+
+// Round bottom corners by amount
+@mixin round-bottom-corners($amount: $default_rounded_amount)
+  @include round-corner("bottom-left", $amount)
+  @include round-corner("bottom-right", $amount)
+  @include round-corner-mozilla("bottomleft", $amount)
+  @include round-corner-mozilla("bottomright", $amount)
+
+// Round all corners by amount
+@mixin round-corners($amount: $default_rounded_amount)
+  border-radius: $amount
+  -moz-border-radius: $amount
+  -webkit-border-radius: $amount
+
+@mixin transparency($float: 0.5)
+  opacity: $float
+  "filter:progid:DXImageTransform.Microsoft.Alpha(opacity=#{($float*100) - 1})"
+
+@mixin gradient($from, $to)
+  background-color: $from
+  background-image: -moz-linear-gradient($from, $to)
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to))
+  background-image: -webkit-linear-gradient($from, $to)
+  background-image: -o-linear-gradient($from, $to)
+
+@mixin base-gradient($from)
+  $to: $from - #222
+  background-color: $from
+  background-image: -moz-linear-gradient($from, $to)
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to))
+  background-image: -webkit-linear-gradient($from, $to)
+  background-image: -o-linear-gradient($from, $to)
+
+@mixin trans-gradient($from: rgba(0,0,0,0), $to: rgba(0,0,0,0.2))
+  background-image: -moz-linear-gradient($from, $to)
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to))
+  background-image: -webkit-linear-gradient($from, $to)
+  background-image: -o-linear-gradient($from, $to)
+
+@mixin box_shadow($color: rgba(0, 0, 0, 0.25), $x: 0, $y: 1px, $spread: 2px, $dunno: 0 )
+  -moz-box-shadow: $color $x $y $spread $dunno
+  -webkit-box-shadow: $color $x $y $spread $dunno
+  -o-box-shadow: $color $x $y $spread $dunno
+  box-shadow: $color $x $y $spread $dunno
+
+@mixin inset_box_shadow($color: rgba(0, 0, 0, 0.25), $x: 0, $y: 1px, $spread: 2px, $dunno: 0 )
+  -moz-box-shadow: inset $color $x $y $spread $dunno
+  -webkit-box-shadow: inset $color $x $y $spread $dunno
+  -o-box-shadow: inset $color $x $y $spread $dunno
+  box-shadow: inset $color $x $y $spread $dunno
+

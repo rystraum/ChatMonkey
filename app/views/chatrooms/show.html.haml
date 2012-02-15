@@ -1,0 +1,33 @@
+%p#notice= notice
+= link_to 'Edit', edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom
+= link_to 'Back', chatrooms_path
+
+%p
+  %b Topic
+  %span= @chatroom.topic
+
+%p
+  %b Members
+  - @chatroom.users.each do |u|
+    %span= u.email + ","
+
+%p#chatroom-id{:style => "display:none"}= @chatroom.id
+%p#last-msg-id{:style => "display:none"}= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
+
+= form_for [@chatroom,Msg.new] do |f|
+  = f.text_area :message, :rows => 1, :tabindex => 1
+  = f.submit "Send", :id => "send-message"
+
+%p Messages:
+#messages-list
+  - @chatroom.msgs.reverse.each do |msg|
+    %dl
+      %dt= msg.message
+      %dd
+        = msg.user.email.split("@").first
+        %span.timestamp= msg.created_at_in_local
+
+= form_for [@chatroom, @chatroom.users.new] do |f|
+  = f.text_field :email
+  = f.submit "Invite"
+

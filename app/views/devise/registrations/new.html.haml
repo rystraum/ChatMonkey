@@ -1,0 +1,18 @@
+.sign_up.round_container
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    %h2 Sign up
+    = devise_error_messages!
+
+    = f.label :email
+    = f.email_field :email
+
+    = f.label :password
+    = f.password_field :password
+
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+
+    = f.submit "Sign up"
+
+  .devise_links= render :partial => "devise/shared/links"
+

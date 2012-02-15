@@ -1,0 +1,7 @@
+.chatroom
+  .topic= link_to "#{chatroom.topic.titleize}", chatroom
+  .users
+    with:
+    - chatroom.users.each do |u|
+      = u.email
+
