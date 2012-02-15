@@ -5,15 +5,88 @@ a
 
 .topmenu
   text-align: right
-  background-color: rgba(0,0,0,0.8)
+  background-color: rgba(0,0,0,0.7)
   padding: 10px 0
+  margin-bottom: 20px
   >a
     @include round-corners
     padding: 5px 10px
     margin: 0 5px
-    background: $diy_brown
-    color: white
+    background: $chatmonkey_peach
+    color: black
+    text-shadow: #CCC 0 1px 1px
     &:hover
       background-color: white
       color: $diy_brown
+
+.flash
+  @include round-corners
+  @include box_shadow
+  text-align: center
+  padding: 5px
+  margin-bottom: 20px
+
+.error
+  background-color: red
+
+.alert
+  background-color: yellow
+
+.success, .notice
+  background-color: green + 80
+
+.round_container
+  @include round-corners
+  >form
+    @include round-top-corners
+    background-color: $diy_brown
+    color: #FFF
+    padding: 30px
+    a
+      color: white
+      border-bottom: 1px solid white
+    h1,h2
+      font-family: $major_font
+      text-shadow: 1px 1px 3px #000
+    label
+      font-family: $major_font
+      font-size: 120%
+      display: block
+      text-shadow: 0 1px 1px #000
+      margin-top: 10px
+    label.checkbox_label,
+    label.remember
+      display: inline-block
+      font-size: 100%
+      text-shadow: 0 0 0
+    label.inline
+      display: inline-block
+    input[type=checkbox]
+      display: inline-block
+      margin-top: 10px
+    input[type=submit]
+      @include trans-gradient
+      background-color: $chatmonkey_peach
+      margin-top: 20px
+      font-size: 120%
+      text-align: center
+      color: white
+      text-shadow: black 0 1px 1px
+      border: 2px solid $chatmonkey_brown + 10
+      &:active
+        @include trans-gradient(rgba(0,0,0,0.5) rgba(0,0,0,0.2))
+        border: 2px solid $diy_brown
+
+.sign_in, .sign_up, .forgot_password
+  width: 400px
+  margin: 0 auto
+  text-align: center
+
+.devise_links
+  @include round-bottom-corners
+  background-color: $chatmonkey_brown
+  box-shadow: inset rgba(0,0,0,0.25) 0 1px 2px 0
+  padding: 10px 0
+  >a
+    color: white
 

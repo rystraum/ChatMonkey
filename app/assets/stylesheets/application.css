@@ -5,6 +5,7 @@
  *= require "reset"
  *= require "text"
  *= require "960"
+ *= require "formalize"
  *= require "base"
  *= require_self
 */

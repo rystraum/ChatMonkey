@@ -19,6 +19,8 @@ $top-text-color: #FFF
 $default_rounded_amount: 5px
 $diy_brown: #6C5144
 $diy_orange: #FD6616
+$chatmonkey_peach: #FEC15A
+$chatmonkey_brown: #583D30
 
 // Round corner at position by amount.
 @mixin round-corner($position, $amount: $default_rounded_amount)
@@ -86,4 +88,16 @@ $diy_orange: #FD6616
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to))
   background-image: -webkit-linear-gradient($from, $to)
   background-image: -o-linear-gradient($from, $to)
+
+@mixin box_shadow($color: rgba(0, 0, 0, 0.25), $x: 0, $y: 1px, $spread: 2px, $dunno: 0 )
+  -moz-box-shadow: $color $x $y $spread $dunno
+  -webkit-box-shadow: $color $x $y $spread $dunno
+  -o-box-shadow: $color $x $y $spread $dunno
+  box-shadow: $color $x $y $spread $dunno
+
+@mixin inset_box_shadow($color: rgba(0, 0, 0, 0.25), $x: 0, $y: 1px, $spread: 2px, $dunno: 0 )
+  -moz-box-shadow: inset $color $x $y $spread $dunno
+  -webkit-box-shadow: inset $color $x $y $spread $dunno
+  -o-box-shadow: inset $color $x $y $spread $dunno
+  box-shadow: inset $color $x $y $spread $dunno
 
