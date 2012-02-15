@@ -1,6 +1,10 @@
 ---
+button.png: button-a989d24db5b04310cef6edb57c6b2c2e.png
+chatmonkey.png: chatmonkey-9f8247f26990d39af3379886057a8bf9.png
+chatmonkey_logo.png: chatmonkey_logo-cc4f5a657c84326d1f2b65846cc3679e.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
+select_arrow.gif: select_arrow-0ae2f578f55d2118f9a2163c731a4cde.gif
 jquery-ui.min.js: jquery-ui.min-2b432ef5545e6620f94e7638b7574058.js
 jquery.min.js: jquery.min-ac6382033c1c5e27ebbc5a5a0597ccb9.js
-application.js: application-57f6a533955054867ae9142b604c8a41.js
-application.css: application-27589359dd9fbe5cf9ec0a0186ff54d7.css
+application.js: application-13a2a0e3e833b9c7ebf54446ddcdef3f.js
+application.css: application-79fcb01f749247b8206c0c79c3201a53.css
