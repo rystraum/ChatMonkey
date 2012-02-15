@@ -1,0 +1,34 @@
+// Place all the styles related to the chatrooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables"
+
+dl
+  dt
+  .timestamp
+    font-size: 0.75em
+
+form
+  clear: both
+  textarea
+    height: 30px
+
+.latest
+  background-color: #fff
+
+.chatroom
+  @include round-corners(2px)
+  @include box_shadow(#ddd, 0, 1px, 3px, 0)
+  text-align: center
+  margin: 0 auto
+  margin-bottom: 20px
+  width: 340px
+  background-color: rgba(0,0,0,0.2)
+  padding: 5px 0
+  a
+    color: $chatmonkey_brown
+    border-bottom: 3px solid $chatmonkey_brown
+
+  .topic
+    font-size: 150%
+
