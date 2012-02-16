@@ -38,13 +38,15 @@ updateChatroom = () ->
     last = msg_id
     $.each(data, (key, val) ->
       email = val.user.email.split("@")[0]
-      html = '<dl class="latest"><dt>' + val.message + '</dt><dd class="latest">' + email + '<span class="timestamp">' + val.created_at_in_local + '</span></dd></dl>'
+      time = '<abbr class="timeago" title="' + val.created_at_in_iso + '">' + val.created_at_in_local + '</abbr>'
+      html = '<dl class="latest"><dt>' + val.message + '</dt><dd class="latest">' + email + time + '</dd></dl>'
       items.push(html)
       if val.id > last
         last = val.id
     )
     $("#messages-list").prepend items.join("")
     $("#last-msg-id").html last
+    $("abbr.timeago",$("#messages-list")).timeago()
     somethingNew()
   )
 
