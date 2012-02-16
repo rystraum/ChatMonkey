@@ -7,4 +7,8 @@ class Msg < ActiveRecord::Base
   def created_at_in_local
     return self.created_at.in_time_zone 8
   end
+
+  def created_at_in_iso
+    return self.created_at.iso8601
+  end
 end
