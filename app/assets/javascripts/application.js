@@ -8,5 +8,6 @@
 //= require jquery_ujs
 //= require autoresize
 //= require color
+//= require timeago
 //= require_tree .
 
