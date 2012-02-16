@@ -15,6 +15,7 @@ class MsgsController < ApplicationController
     @msgs.each do |m|
       m[:user] = User.find(m.user_id)
       m[:created_at_in_local] = m.created_at_in_local
+      m[:created_at_in_iso] = m.created_at_in_iso
     end
 
     respond_to do |format|

@@ -25,9 +25,15 @@
       %dt= msg.message
       %dd
         = msg.user.email.split("@").first
-        %span.timestamp= msg.created_at_in_local
+        %abbr.timeago{:title => msg.created_at_in_iso}= msg.created_at_in_local
 
 = form_for [@chatroom, @chatroom.users.new] do |f|
   = f.text_field :email
   = f.submit "Invite"
+
+:javascript
+  $(document).ready(function() {
+    $.timeago.settings.allowFuture = true;
+    $("abbr.timeago").timeago();
+  });
 
