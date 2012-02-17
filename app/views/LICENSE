@@ -1,0 +1,23 @@
+# Due to inserting html comments as very impractical, the following views are
+# covered by the below license:
+# chatrooms/_chatroom.html.haml
+# chatrooms/edit.html.erb
+# chatrooms/_form.html.erb
+# chatrooms/index.html.haml
+# chatrooms/new.html.erb
+# chatrooms/show.html.haml
+# layouts/application.html.haml
+# msgs/create.html.erb
+# msgs/_msg.html.haml
+# pages/home.html.haml
+# shared/_messages.html.haml
+# shared/_topmenu.html.haml
+# users/create.html.erb
+# users/_user.html.haml
+
+# License
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+# (c) Rystraum Gamonez
+
