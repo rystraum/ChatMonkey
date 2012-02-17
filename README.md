@@ -1,14 +1,15 @@
 # ChatMonkey
+http://github.com/rystraum/chatmonkey
 
-## What's ChatMonkey?
-Simply put, ChatMonkey is a web-based chatroom services. You sign up and you get to chat
-with whoever is in the room.
+## What is ChatMonkey?
+ChatMonkey is a web-based chatroom service. You sign up and you get to chat with whoever is in the room.
 
-## Why'd you make another one?
-Because I want to. It's part of how I study Rails.
+## Why did you make another one?
+Aside from I started this when I was still learning Rails, I made it for my girlfriend who is stuck behind a firewall that does not allow IM through. Good Rails exercise too.
 
 ## Why ChatMonkey?
-Because I couldn't think of any more names plus this one's available in Heroku.
+I thought of Chat + something.
+I've tried Chatbox, Chatter, ChatDolphin, ChatPotato and settled for ChatMonkey because monkeys are kind of noisy. I kind of remember Buddy the purple gorilla I had on my desktop when I was 9.
 
 ## What more to add?
 
