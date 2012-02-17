@@ -98,9 +98,9 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2.2)
+    rdiscount (1.6.8)
     rdoc (3.11)
       json (~> 1.4)
-    redcarpet (2.1.0)
     responders (0.6.4)
     ruby-debug-base19 (0.11.25)
       columnize (>= 0.3.1)
@@ -152,7 +152,7 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 3.1.0)
-  redcarpet
+  rdiscount
   ruby-debug19
   sass-rails (~> 3.1.0)
   sqlite3
