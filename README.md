@@ -1,16 +1,16 @@
-= ChatMonkey
+# ChatMonkey
 
-== What's ChatMonkey?
+## What's ChatMonkey?
 Simply put, ChatMonkey is a web-based chatroom services. You sign up and you get to chat
 with whoever is in the room.
 
-== Why'd you make another one?
+## Why'd you make another one?
 Because I want to. It's part of how I study Rails.
 
-== Why ChatMonkey?
+## Why ChatMonkey?
 Because I couldn't think of any more names plus this one's available in Heroku.
 
-== What more to add?
+## What more to add?
 
 * Private rooms and inviting people
 * Probably change the 10s poll to probably long polling or something more efficient
