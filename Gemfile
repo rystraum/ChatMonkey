@@ -8,7 +8,7 @@ gem 'therubyracer'
 gem 'devise'
 gem 'haml'
 gem 'inherited_resources'
-gem 'redcarpet'
+gem 'rdiscount'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
