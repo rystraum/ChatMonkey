@@ -21,19 +21,18 @@ getDateObjectString = (date) ->
 
 somethingNew = ->
   $(".latest").each( (index) ->
-    $(this).data('cssBG',$(this).css('background-color'))
-    $(this).animate({
-        backgroundColor: "#abcdef"
+    $(this).data('cssBG',$(this).css('background-color')) if !($(this).data('cssBG'))
+    $(this).stop().animate({
+        backgroundColor: "#80D080"
     })
   )
 
 notNewAnymore = ->
   $(".latest").each( (index) ->
     bgc = $(this).data('cssBG')
-    $(this).animate({
+    $(this).stop().animate({
         backgroundColor: bgc
-    })
-    $(this).removeClass("latest")
+    }).removeClass("latest")
   )
 
 updateChatroom = () ->
@@ -46,9 +45,9 @@ updateChatroom = () ->
     last = msg_id
     $.each(data, (key, val) ->
       whose = (email) -> if email == val.user.email then return 'mine' else return 'other'
-      email = '<dd class="who">' + val.user.email.split("@")[0] + '</dd>'
+      email = '<span class="who">' + val.user.email.split("@")[0] + ': </span>'
       time = '<dd class="when"><abbr class="timeago" title="' + val.created_at_in_iso + '">' + val.created_at_in_local + '</abbr></dd>'
-      m = '<dl class="latest msg"><dt class="what">' + val.message + '</dt>' + email + time + '</dl>'
+      m = '<dl class="latest msg"><dt class="what">' + email + val.message + '</dt>' + time + '</dl>'
       html = '<div class='+whose(user_email)+'>'+m+'</div>'
       items.push(html)
       if val.id > last

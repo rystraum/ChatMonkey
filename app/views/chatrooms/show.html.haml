@@ -4,19 +4,20 @@
   = link_to 'Back', chatrooms_path
 
   %p
-    %b Topic
+    %strong Topic
     %span= @chatroom.topic
 
-  %p
-    %b Members
+  %div{style: "margin-bottom: 20px"}
+    %strong Members
     = render @chatroom.users
 
     = form_for [@chatroom, @chatroom.users.new] do |f|
-      = f.text_field :email
       = f.submit "Invite"
-    - if @chatroom.users.count > 2
-      :css
-        #messages-list .other .who { display: block }
+      = f.text_field :email
+
+  - if @chatroom.users.count > 2
+    :css
+      #messages-list .other .who { display: inline }
   #chatroom-id{:style => "display:none"}= @chatroom.id
   #last-msg-id{:style => "display:none"}= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
   #current-user{:style => "display:none"}= current_user.email
