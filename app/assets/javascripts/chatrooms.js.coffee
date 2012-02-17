@@ -21,19 +21,18 @@ getDateObjectString = (date) ->
 
 somethingNew = ->
   $(".latest").each( (index) ->
-    $(this).data('cssBG',$(this).css('background-color'))
-    $(this).animate({
-        backgroundColor: "#abcdef"
+    $(this).data('cssBG',$(this).css('background-color')) if !($(this).data('cssBG'))
+    $(this).stop().animate({
+        backgroundColor: "#80D080"
     })
   )
 
 notNewAnymore = ->
   $(".latest").each( (index) ->
     bgc = $(this).data('cssBG')
-    $(this).animate({
+    $(this).stop().animate({
         backgroundColor: bgc
-    })
-    $(this).removeClass("latest")
+    }).removeClass("latest")
   )
 
 updateChatroom = () ->
