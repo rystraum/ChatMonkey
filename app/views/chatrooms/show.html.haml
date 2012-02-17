@@ -1,39 +1,37 @@
-%p#notice= notice
-= link_to 'Edit', edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom
-= link_to 'Back', chatrooms_path
+#chatroom
+  %p#notice= notice
+  = link_to 'Edit', edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom
+  = link_to 'Back', chatrooms_path
 
-%p
-  %b Topic
-  %span= @chatroom.topic
+  %p
+    %b Topic
+    %span= @chatroom.topic
 
-%p
-  %b Members
-  - @chatroom.users.each do |u|
-    %span= u.email + ","
+  %p
+    %b Members
+    = render @chatroom.users
 
-%p#chatroom-id{:style => "display:none"}= @chatroom.id
-%p#last-msg-id{:style => "display:none"}= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
+    = form_for [@chatroom, @chatroom.users.new] do |f|
+      = f.text_field :email
+      = f.submit "Invite"
+    - if @chatroom.users.count > 2
+      :css
+        #messages-list .other .who { display: block }
+  #chatroom-id{:style => "display:none"}= @chatroom.id
+  #last-msg-id{:style => "display:none"}= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
+  #current-user{:style => "display:none"}= current_user.email
 
-= form_for [@chatroom,Msg.new] do |f|
-  = f.text_area :message, :rows => 1, :tabindex => 1
-  = f.submit "Send", :id => "send-message"
+  = form_for [@chatroom,Msg.new] do |f|
+    = f.text_area :message, :rows => 1, :tabindex => 1
+    = f.submit "Send", :id => "send-message"
 
-%p Messages:
-#messages-list
-  - @chatroom.msgs.reverse.each do |msg|
-    %dl
-      %dt= msg.message
-      %dd
-        = msg.user.email.split("@").first
-        %abbr.timeago{:title => msg.created_at_in_iso}= msg.created_at_in_local
+  %p Messages:
+  #messages-list
+    = render @chatroom.msgs.reverse
 
-= form_for [@chatroom, @chatroom.users.new] do |f|
-  = f.text_field :email
-  = f.submit "Invite"
-
-:javascript
-  $(document).ready(function() {
-    $.timeago.settings.allowFuture = true;
-    $("abbr.timeago").timeago();
-  });
+  :javascript
+    $(document).ready(function() {
+      $.timeago.settings.allowFuture = true;
+      $("abbr.timeago").timeago();
+    });
 

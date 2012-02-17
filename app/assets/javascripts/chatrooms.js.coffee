@@ -20,26 +20,36 @@ getDateObjectString = (date) ->
   getDateString(date) + " " + getTimeString(date)
 
 somethingNew = ->
-  $(".latest").animate({
-      backgroundColor: "#abcdef"
-  })
+  $(".latest").each( (index) ->
+    $(this).data('cssBG',$(this).css('background-color'))
+    $(this).animate({
+        backgroundColor: "#abcdef"
+    })
+  )
 
 notNewAnymore = ->
-  $(".latest").animate({
-      backgroundColor: "inherit"
-  }).removeClass("latest")
+  $(".latest").each( (index) ->
+    bgc = $(this).data('cssBG')
+    $(this).animate({
+        backgroundColor: bgc
+    })
+    $(this).removeClass("latest")
+  )
 
 updateChatroom = () ->
   chatroom_id = $("#chatroom-id").html()
   msg_id = $("#last-msg-id").html()
+  user_email = $("#current-user").html()
   url = '/msgs/fetch.json?msg_id=' + msg_id + '&chatroom_id=' + chatroom_id
   $.getJSON(url, (data) ->
     items = []
     last = msg_id
     $.each(data, (key, val) ->
-      email = val.user.email.split("@")[0]
-      time = '<abbr class="timeago" title="' + val.created_at_in_iso + '">' + val.created_at_in_local + '</abbr>'
-      html = '<dl class="latest"><dt>' + val.message + '</dt><dd class="latest">' + email + time + '</dd></dl>'
+      whose = (email) -> if email == val.user.email then return 'mine' else return 'other'
+      email = '<dd class="who">' + val.user.email.split("@")[0] + '</dd>'
+      time = '<dd class="when"><abbr class="timeago" title="' + val.created_at_in_iso + '">' + val.created_at_in_local + '</abbr></dd>'
+      m = '<dl class="latest msg"><dt class="what">' + val.message + '</dt>' + email + time + '</dl>'
+      html = '<div class='+whose(user_email)+'>'+m+'</div>'
       items.push(html)
       if val.id > last
         last = val.id
