@@ -1,0 +1,7 @@
+%div{class: "#{'mine' if msg.user == current_user} #{'other' unless msg.user == current_user}"}
+  %dl.msg
+    %dt.what= msg.message
+    %dd.who= msg.user.email.split("@").first
+    %dd.when
+      %abbr.timeago{:title => msg.created_at_in_iso}= msg.created_at_in_local
+

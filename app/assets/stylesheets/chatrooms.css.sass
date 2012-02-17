@@ -3,10 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "variables"
 
-dl
-  dt
-  .timeago
+.msg
+  @include round-corners(3px)
+  margin-bottom: 0
+  margin: 5px 0
+  padding: 5px
+  .what
+    font-size: 1.5em
+  .who
+    display: none
+  .when
     font-size: 0.75em
+
+.me
+  background-color: green + 80
+
+.notme
+  background-color: yellow + 80
+
+.other
+  text-align: right
+  padding-right: 0
+  padding-left: 40%
+  dl
+    @extend .notme
+
+.mine
+  text-align: left
+  padding-left: 0
+  padding-right: 40%
+  dl
+    @extend .me
 
 form
   clear: both
@@ -15,6 +42,10 @@ form
 
 .latest
   background-color: #fff
+
+#chatroom
+  width: 400px
+  margin: 0 auto
 
 .chatroom
   @include round-corners(2px)
