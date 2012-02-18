@@ -1,3 +1,7 @@
+## 0.4
+  * Added support for display name, you can set it by editing your profile right next to the logout link
+  * Started writing unit tests using RSpec, Factory Girl and Spork
+
 ## 0.3.x
   * Style changes to presentation of messages
   * Updated README file
