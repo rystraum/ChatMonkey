@@ -11,7 +11,15 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :display_name
 
   has_and_belongs_to_many :chatrooms
   has_many :msgs
+
+  before_validation :default_display_name
+
+private
+  def default_display_name
+    self.display_name = self.email.split("@").first if self.display_name.blank?
+  end
 end
