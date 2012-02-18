@@ -18,9 +18,14 @@ end
 
 gem 'jquery-rails'
 
- gem 'ruby-debug19', :require => 'ruby-debug', :group => :development
+# gem 'ruby-debug19', :require => 'ruby-debug', :group => :development
 
 group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'spork'
+  gem 'rails3-generators'
   gem 'turn', :require => false
 end
 
