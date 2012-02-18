@@ -6,17 +6,19 @@
     = f.label :email
     = f.email_field :email
 
-    = f.label :password
-    %em (leave blank if you don't want to change it)
+    = f.label :display_name
+    = f.text_field :display_name
+
+    = f.label :password, "Password (leave blank if you don't want to change it)"
     = f.password_field :password
 
     = f.label :password_confirmation
     = f.password_field :password_confirmation
 
-    = f.label :current_password
-    %em (we need your current password to confirm your changes)
+    = f.label :current_password, "Current Password (we need your current password to confirm your changes)"
     = f.password_field :current_password
 
+    %br
     = f.submit "Submit"
 
   .devise_links
