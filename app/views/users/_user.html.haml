@@ -1,4 +1,5 @@
 %span{class: "#{!current_user.blank? and current_user.email == user.email ? 'me': 'notme'}", style: "margin: 0 5px"}
   = user.email
+  = "[#{user.display_name}]"
   = "(Me!)" if !current_user.blank? and current_user.email == user.email
 
