@@ -16,6 +16,10 @@ group :assets do
   gem 'uglifier'
 end
 
+group :development do
+  gem 'pry'
+end
+
 gem 'jquery-rails'
 
 # gem 'ruby-debug19', :require => 'ruby-debug', :group => :development
