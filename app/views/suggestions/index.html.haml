@@ -9,7 +9,8 @@
             %td{style:"width: 70%"}= suggestion.content
             %td{style:"width: 10% display: table-cell; vertical-align: middle;"}= suggestion.votes
             %td{style:"width: 20%; display: table-cell; vertical-align: middle;"}
-              = form_for vote_suggestion_path(suggestion) do |f|
+              = form_for suggestion, url: vote_suggestion_path(suggestion), method: :put do |f|
+                = f.hidden_field :suggestion_id, value: suggestion.id
                 = f.submit "Want!", class: "link want"
   .clear
 
