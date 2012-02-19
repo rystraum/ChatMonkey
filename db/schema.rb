@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218171250) do
+ActiveRecord::Schema.define(:version => 20120219043548) do
 
   create_table "chatrooms", :force => true do |t|
     t.string   "topic"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(:version => 20120218171250) do
   end
 
   add_index "msgs", ["user_id", "chatroom_id"], :name => "index_msgs_on_user_id_and_chatroom_id"
+
+  create_table "suggestions", :force => true do |t|
+    t.string   "content"
+    t.integer  "votes",      :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
