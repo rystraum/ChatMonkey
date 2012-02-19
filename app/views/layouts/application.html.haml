@@ -10,8 +10,14 @@
     .topmenu
       = render "shared/topmenu"
 
-    #main.container_16
-      = render "shared/messages"
+    #wrap
+      #main.container_16
+        = render "shared/messages"
 
-      = yield
+        = yield
+
+    #footer
+      = render "shared/footer"
+
+  = render "shared/analytics"
 

@@ -1,0 +1,33 @@
+.ajax_callback
+= form_for Suggestion.new, remote: true do |f|
+  = f.label "Any new ideas or suggestions?"
+  = f.text_area :content, id: "suggestion-content"
+  = f.submit "WANT!", id: "submit-suggestion"
+= link_to "More ideas?", "#suggestion-content", id: "show-suggestion-form", style:"display:none"
+
+:javascript
+  function create_flash(msg, classes) {
+    $(".ajax_callback > *").stop().fadeOut();
+    dom = $("<div></div>").addClass("flash " + classes).html(msg).hide();
+    $(".ajax_callback").empty().append(dom);
+    $(".ajax_callback > *").stop().fadeIn();
+    $("#new_suggestion").hide();
+    $("#show-suggestion-form").show();
+  }
+
+  $(document).ready(function(){
+    $("#suggestion-content").autoResize();
+    $("#show-suggestion-form").click(function(e){
+      e.preventDefault();
+      $(".ajax_callback > *").hide();
+      $("#new_suggestion").slideDown();
+      $(this).hide();
+      return false;
+    });
+
+    $("#new_suggestion")
+      .bind('ajax:loading', function() {create_flash("Submitting..","alert");})
+      .bind('ajax:success', function(e, data, status, xhr) {create_flash("Thanks!","success");})
+      .bind('ajax:failure', function(e, xhr, status, error) {create_flash("OHNO! Something happened! Can you try again?","error");});
+  });
+

@@ -1,5 +1,11 @@
+## 0.5
+  * Release: 19 Feb 2011
+  * Added suggestions box and [list](/suggestions)
+  * Monkey WANT! button
+
 ## 0.4
-  * Added support for display name, you can set it by editing your profile right next to the logout link
+  * Release: 18 Feb 2011
+  * Added support for display name, you can set it by [editing your profile](/users/edit)
   * Started writing unit tests using RSpec, Factory Girl and Spork
 
 ## 0.3.x
