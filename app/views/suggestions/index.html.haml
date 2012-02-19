@@ -1,0 +1,18 @@
+%h1 Existing suggestions
+
+.grid_16
+  - collection.in_groups_of(5,false).each_with_index do |group,gi|
+    %div{class: "grid_8 #{'alpha' if gi%2 == 0} #{'omega' if gi%2 == 1}"}
+      %table{style:"width: 100%; margin-bottom: 0"}
+        - group.each do |suggestion|
+          %tr
+            %td{style:"width: 70%"}= suggestion.content
+            %td{style:"width: 10% display: table-cell; vertical-align: middle;"}= suggestion.votes
+            %td{style:"width: 20%; display: table-cell; vertical-align: middle;"}
+              = form_for vote_suggestion_path(suggestion) do |f|
+                = f.submit "Want!", class: "link want"
+  .clear
+
+%small
+  %a{href: "http://www.flickr.com/photos/freddievonchimp/4774020533/"} Monkey 'Like' Hand by MailChimp®
+

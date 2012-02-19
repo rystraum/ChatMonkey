@@ -1,6 +1,7 @@
 Chat::Application.routes.draw do
   get "users/create"
   get "msgs/fetch"
+
   root :to => "pages#home"
   devise_for :users
   match "/dashboard" => "chatrooms#index", :as => :user_root
@@ -15,4 +16,10 @@ Chat::Application.routes.draw do
   end
 
   resources :msgs
+
+  resources :suggestions, only: [:index, :create] do
+    member do
+      put "vote"
+    end
+  end
 end
