@@ -1,10 +1,45 @@
 @import "variables"
 
+$footer_height: 100px
+$footer_padding: 10px
+
 *
   font-family: "PT Sans", "Ubuntu", sans-serif
 
+html,body
+  height: 100%
+
 a
   text-decoration: none
+
+
+#wrap
+  min-height: 100%
+
+#main
+  overflow: auto
+  padding-bottom: $footer_height + $footer_padding*2
+
+#footer
+  position: relative
+  margin-top: -($footer_height + $footer_padding*2)
+  height: $footer_height
+  padding: $footer_padding
+  clear: both
+  background-color: $chatmonkey_brown + 50
+  color: white
+  text-shadow: #666 0 1px 5px
+  a
+    color: white
+    &:before
+      content: "\2386  "
+  h1, h2, h3, h4, h5, h6
+    margin: 0
+    margin-bottom: 10px
+    padding: 0
+    text-align: center
+  ul
+    list-style: none
 
 .topmenu
   text-align: right
@@ -102,4 +137,19 @@ a
   a
     color: white
     border-bottom: 1px solid white
+
+input.link
+  @include round-corners(0)
+  margin: 0
+  padding: 0
+  background: transparent none
+  border: none
+
+input.want
+  background: image-url("monkey_like.jpg") white left center no-repeat
+  padding: 5px
+  height: 30px
+  padding-left: 35px
+  &:hover
+    background: image-url("monkey_like.jpg") white left center no-repeat
 
