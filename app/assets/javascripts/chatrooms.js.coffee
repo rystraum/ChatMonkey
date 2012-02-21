@@ -26,13 +26,17 @@ getDateObjectString = (date) ->
   getDateString(date) + " " + getTimeString(date)
 
 somethingNew = ->
-  document.title = "Chat: " + $(".latest").size() + " unread"
-  $(".latest").each( (index) ->
-    $(this).data('cssBG',$(this).css('background-color')) if !($(this).data('cssBG'))
-    $(this).stop().animate({
-        backgroundColor: "#80D080"
-    })
-  )
+  if ($(".latest").size() > 0)
+    document.title = "Chat: " + $(".latest").size() + " unread"
+    $(".latest").each( (index) ->
+      $(this).data('cssBG',$(this).css('background-color')) if !($(this).data('cssBG'))
+      $(this).stop().animate({
+          backgroundColor: "#80D080"
+      })
+    )
+  else
+    console.log "no new messages"
+
 
 notNewAnymore = ->
   $(".latest").each( (index) ->
