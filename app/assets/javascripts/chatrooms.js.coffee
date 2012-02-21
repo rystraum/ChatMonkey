@@ -26,6 +26,7 @@ getDateObjectString = (date) ->
   getDateString(date) + " " + getTimeString(date)
 
 somethingNew = ->
+  document.title = "Chat: " + $(".latest").size() + " unread"
   $(".latest").each( (index) ->
     $(this).data('cssBG',$(this).css('background-color')) if !($(this).data('cssBG'))
     $(this).stop().animate({
@@ -40,6 +41,7 @@ notNewAnymore = ->
         backgroundColor: bgc
     }).removeClass("latest")
   )
+  document.title = "Chat"
 
 updateChatroom = () ->
   chatroom_id = $("#chatroom-id").html()
