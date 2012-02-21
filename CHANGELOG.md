@@ -1,9 +1,10 @@
-## 0.6
+## 0.6.x
   * Release: 21 Feb 2011
   * Truncated chatrooms to latest 20 messages
   * Added chatroom log link which displays all the messages separately
   * Fixed where display name isn't displaying properly on messages fetched via AJAX
   * The text on suggestion box is now cleared after submit pushes through
+  * # of unread messages now is now displayed at the title bar inside a chatroom
 
 ## 0.5
   * Release: 19 Feb 2011
