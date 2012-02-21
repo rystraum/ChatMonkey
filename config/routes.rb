@@ -13,6 +13,9 @@ Chat::Application.routes.draw do
   resources :chatrooms do
     resources :msgs
     resources :users
+    member do
+      get "full"
+    end
   end
 
   resources :msgs
