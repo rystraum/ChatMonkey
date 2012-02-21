@@ -1,7 +1,6 @@
 #chatroom
   %p#notice= notice
-  = link_to 'Edit', edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom
-  = link_to 'Back', chatrooms_path
+  = link_to 'Back', @chatroom
 
   %p
     %strong Topic
@@ -11,10 +10,6 @@
     %strong Members
     = render @chatroom.users
 
-    = form_for [@chatroom, @chatroom.users.new] do |f|
-      = f.submit "Invite"
-      = f.text_field :email
-
   - if @chatroom.users.count > 2
     :css
       #messages-list .other .who { display: inline }
@@ -22,19 +17,12 @@
   #last-msg-id{:style => "display:none"}= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
   #current-user{:style => "display:none"}= current_user.email
 
-  = form_for [@chatroom,Msg.new] do |f|
-    = f.text_area :message, :rows => 1, :tabindex => 1
-    = f.submit "Send", :id => "send-message"
-
-  %p Latest 20 Messages:
+  %p Messages:
   #messages-list
     = render @msgs
 
-  = link_to "Full message history", full_chatroom_path(@chatroom)
-
   :javascript
     $(document).ready(function() {
-      $.timeago.settings.allowFuture = true;
-      $("abbr.timeago").timeago();
+      $(".hidden").show();
     });
 

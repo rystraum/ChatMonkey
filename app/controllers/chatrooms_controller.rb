@@ -6,7 +6,7 @@
 class ChatroomsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :user_is_owner, :only => [:edit, :update, :destroy]
-  before_filter :user_is_allowed, :only => [:show]
+  before_filter :user_is_allowed, :only => [:show, :full]
 
   # GET /chatrooms
   # GET /chatrooms.json
@@ -22,8 +22,17 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms/1
   # GET /chatrooms/1.json
   def show
+    @msgs = @chatroom.msgs.last(20).reverse
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render json: @chatroom }
+    end
+  end
+
+  def full
+    @msgs = @chatroom.msgs.reverse
+    respond_to do |format|
+      format.html
       format.json { render json: @chatroom }
     end
   end

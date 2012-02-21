@@ -1,3 +1,10 @@
+## 0.6
+  * Release: 21 Feb 2011
+  * Truncated chatrooms to latest 20 messages
+  * Added chatroom log link which displays all the messages separately
+  * Fixed where display name isn't displaying properly on messages fetched via AJAX
+  * The text on suggestion box is now cleared after submit pushes through
+
 ## 0.5
   * Release: 19 Feb 2011
   * Added suggestions box and [list](/suggestions)

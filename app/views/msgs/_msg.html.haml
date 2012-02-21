@@ -5,4 +5,5 @@
       = msg.message
     %dd.when
       %abbr.timeago{:title => msg.created_at_in_iso}= msg.created_at_in_local
+      .hidden{style: "display: none"} #{distance_of_time_in_words msg.created_at, Time.now} ago
 

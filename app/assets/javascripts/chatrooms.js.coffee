@@ -26,6 +26,7 @@ getDateObjectString = (date) ->
   getDateString(date) + " " + getTimeString(date)
 
 somethingNew = ->
+  document.title = "Chat: " + $(".latest").size() + " unread"
   $(".latest").each( (index) ->
     $(this).data('cssBG',$(this).css('background-color')) if !($(this).data('cssBG'))
     $(this).stop().animate({
@@ -40,6 +41,7 @@ notNewAnymore = ->
         backgroundColor: bgc
     }).removeClass("latest")
   )
+  document.title = "Chat"
 
 updateChatroom = () ->
   chatroom_id = $("#chatroom-id").html()
@@ -51,7 +53,8 @@ updateChatroom = () ->
     last = msg_id
     $.each(data, (key, val) ->
       whose = (email) -> if email == val.user.email then return 'mine' else return 'other'
-      email = '<span class="who">' + val.user.email.split("@")[0] + ': </span>'
+      who = -> if val.user.display_name? then return val.user.display_name else return val.user.email.split("@")[0]
+      email = '<span class="who">' + who() + ': </span>'
       time = '<dd class="when"><abbr class="timeago" title="' + val.created_at_in_iso + '">' + val.created_at_in_local + '</abbr></dd>'
       m = '<dl class="latest msg"><dt class="what">' + email + val.message + '</dt>' + time + '</dl>'
       html = '<div class='+whose(user_email)+'>'+m+'</div>'

@@ -27,7 +27,7 @@
 
     $("#new_suggestion")
       .bind('ajax:loading', function() {create_flash("Submitting..","alert");})
-      .bind('ajax:success', function(e, data, status, xhr) {create_flash("Thanks!","success");})
+      .bind('ajax:success', function(e, data, status, xhr) {create_flash("Thanks!","success"); $("#suggestion-content").html("");})
       .bind('ajax:failure', function(e, xhr, status, error) {create_flash("OHNO! Something happened! Can you try again?","error");});
   });
 
