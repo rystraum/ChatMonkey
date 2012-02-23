@@ -1,1 +1,1 @@
-Chat::Application.config.chatmonkey_version = '0.6.2'
+Chat::Application.config.chatmonkey_version = '0.7'

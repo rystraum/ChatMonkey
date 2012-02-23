@@ -1,3 +1,10 @@
+## 0.7
+  * Release: 23 Feb 2011
+  * Moved changing of topic and inviting members inline and made it unobtrusive
+  * Added deleting of chatroom
+    * You can find it at the full chat log page at the bottom of every chatroom
+    * Burying it deep in the interface was intended to keep from accidental deletions
+
 ## 0.6.x
   * Release: 21 Feb 2011
   * Truncated chatrooms to latest 20 messages
