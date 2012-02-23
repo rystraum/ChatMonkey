@@ -10,11 +10,16 @@
     %strong Members
     = render @chatroom.users
 
+  %div{style: "margin-bottom: 20px"}
+    %strong Delete
+    I want to
+    = link_to "delete", @chatroom, confirm: "You will lose everything in this chatroom. Are you sure?", method: :delete
+    this chatroom
+
+
   - if @chatroom.users.count > 2
     :css
       #messages-list .other .who { display: inline }
-  #chatroom-id{:style => "display:none"}= @chatroom.id
-  #last-msg-id{:style => "display:none"}= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
   #current-user{:style => "display:none"}= current_user.email
 
   %p Messages:
