@@ -1,19 +1,23 @@
 #chatroom
   %p#notice= notice
-  = link_to 'Edit', edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom
-  = link_to 'Back', chatrooms_path
+  %p= link_to '< Back to chatrooms list', chatrooms_path
 
-  %p
+
+  %div{style: "margin-bottom: 20px"}
     %strong Topic
     %span= @chatroom.topic
+    %div
+      = link_to 'Change topic', (edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom), id: "change-topic"
+      = render 'form'
 
   %div{style: "margin-bottom: 20px"}
     %strong Members
     = render @chatroom.users
-
-    = form_for [@chatroom, @chatroom.users.new] do |f|
-      = f.submit "Invite"
-      = f.text_field :email
+    %div
+      = link_to 'Invite members', "#", id: "invite"
+      = form_for [@chatroom, @chatroom.users.new] do |f|
+        = f.submit "Invite"
+        = f.text_field :email
 
   - if @chatroom.users.count > 2
     :css
@@ -36,5 +40,18 @@
     $(document).ready(function() {
       $.timeago.settings.allowFuture = true;
       $("abbr.timeago").timeago();
+      $("#change-topic").siblings("form").hide();
+      $("#change-topic").click(function(e){
+        e.preventDefault();
+        $(this).siblings("form").slideToggle();
+        return false;
+      });
+
+      $("#invite").siblings("form").hide();
+      $("#invite").click(function(e){
+        e.preventDefault();
+        $(this).siblings("form").slideToggle();
+        return false;
+      });
     });
 
