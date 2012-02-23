@@ -88,7 +88,7 @@ class ChatroomsController < ApplicationController
     @chatroom.destroy
 
     respond_to do |format|
-      format.html { redirect_to chatrooms_url }
+      format.html { redirect_to chatrooms_url, alert: "Chatroom deleted. :(" }
       format.json { head :ok }
     end
   end

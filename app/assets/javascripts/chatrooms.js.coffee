@@ -68,7 +68,7 @@ updateChatroom = () ->
     )
     $("#messages-list").prepend items.join("")
     $("#last-msg-id").html last
-    $("abbr.timeago",$("#messages-list")).timeago()
+    $("abbr.timeago",$(".latest")).timeago()
     somethingNew()
   )
 
