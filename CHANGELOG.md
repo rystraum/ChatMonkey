@@ -1,3 +1,8 @@
+## 0.9
+  * Release: 25 Feb 2011
+  * Enabled desktop notifications
+    * **only works on Webkit-based browsers! (i.e. Chrome or Safari)**
+
 ## 0.8.x
   * Release: 24 Feb 2011
   * Displaying of last message sent in the chatroom list
