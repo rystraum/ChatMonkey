@@ -1,5 +1,7 @@
 .chatroom
   .topic= link_to "#{chatroom.topic.titleize}", chatroom
+  .last_message
+    %em last message sent #{distance_of_time_in_words chatroom.msgs.last.created_at_in_local, Time.now} ago
   .users
     with:
     - chatroom.users.each do |u|
