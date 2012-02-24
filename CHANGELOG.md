@@ -1,3 +1,8 @@
+## 0.8
+  * Release: 24 Feb 2011
+  * Displaying of last message sent in the chatroom list
+  * Made action links look more consistent
+
 ## 0.7
   * Release: 23 Feb 2011
   * Moved changing of topic and inviting members inline and made it unobtrusive

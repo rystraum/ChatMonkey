@@ -1,5 +1,9 @@
+- last_message = chatroom.msgs.last
 .chatroom
   .topic= link_to "#{chatroom.topic.titleize}", chatroom
+  .last_message
+    %em last message sent by #{last_message.user.display_name} #{distance_of_time_in_words last_message.created_at_in_local, Time.now} ago
+    %p #{last_message}
   .users
     with:
     - chatroom.users.each do |u|

@@ -41,6 +41,18 @@ a
   ul
     list-style: none
 
+.button-like
+  @include round-corners
+  @include box_shadow
+  padding: 5px 10px
+  margin: 0 5px
+  background-color: $chatmonkey_peach
+  color: black
+  text-shadow: #CCC 0 1px 1px
+  &:hover
+    background-color: white
+    color: $diy_brown
+
 .topmenu
   text-align: right
   background-color: rgba(0,0,0,0.7)
@@ -56,15 +68,7 @@ a
       max-height: 20px
   >.menu
     >a
-      @include round-corners
-      padding: 5px 10px
-      margin: 0 5px
-      background-color: $chatmonkey_peach
-      color: black
-      text-shadow: #CCC 0 1px 1px
-      &:hover
-        background-color: white
-        color: $diy_brown
+      @extend .button-like
 
 .flash
   @include round-corners
@@ -134,7 +138,7 @@ a
   background-color: $chatmonkey_brown
   box-shadow: inset rgba(0,0,0,0.25) 0 1px 2px 0
   padding: 10px
-  a
+  >a
     color: white
     border-bottom: 1px solid white
 
@@ -152,4 +156,7 @@ input.want
   padding-left: 35px
   &:hover
     background: image-url("monkey_like.jpg") white left center no-repeat
+
+.actions
+  text-align: left
 

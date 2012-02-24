@@ -16,4 +16,8 @@ class Msg < ActiveRecord::Base
   def created_at_in_iso
     return self.created_at.iso8601
   end
+
+  def to_s
+    return message
+  end
 end
