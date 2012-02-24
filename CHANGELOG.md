@@ -1,4 +1,4 @@
-## 0.8
+## 0.8.x
   * Release: 24 Feb 2011
   * Displaying of last message sent in the chatroom list
   * Made action links look more consistent
