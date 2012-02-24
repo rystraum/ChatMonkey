@@ -26,6 +26,7 @@ getDateObjectString = (date) ->
   getDateString(date) + " " + getTimeString(date)
 
 somethingNew = ->
+  send = $("#toggle-notif").data('send-notif')
   if ($(".latest").size() > 0)
     document.title = "Chat: " + $(".latest").size() + " unread"
     $(".latest").each( (index) ->
@@ -33,6 +34,10 @@ somethingNew = ->
       $(this).stop().animate({
           backgroundColor: "#80D080"
       })
+      nmsg = $(".notify:parent",this).html()
+      if nmsg? and send
+        notify nmsg
+        $(".notify",this).removeClass "notify"
     )
   else
     console.log "no new messages"
@@ -60,9 +65,9 @@ updateChatroom = () ->
       who = -> if val.user.display_name? then return val.user.display_name else return val.user.email.split("@")[0]
       email = '<span class="who">' + who() + ': </span>'
       time = '<dd class="when"><abbr class="timeago" title="' + val.created_at_in_iso + '">' + val.created_at_in_local + '</abbr></dd>'
-      m = '<dl class="latest msg"><dt class="what">' + email + val.message + '</dt>' + time + '</dl>'
+      m = '<dl class="latest msg"><dt class="what">' + email + '<span class="notify">' + val.message + '</span></dt>' + time + '</dl>'
       html = '<div class='+whose(user_email)+'>'+m+'</div>'
-      items.push(html)
+      items.push html
       if val.id > last
         last = val.id
     )
@@ -81,25 +86,74 @@ sendMessage = () ->
     updateChatroom()
   )
 
-isEmpty = ( inputStr ) ->
-  if ( null == inputStr || "" == inputStr )
-    return true
-  else
-    return false
+emptyFunction = () ->
+  return
+
+requestPermission = (callback = emptyFunction) ->
+  window.webkitNotifications.requestPermission callback
+
+notify = (msg) ->
+  if !window.webkitNotifications
+    console.log 'Desktop notifications are only supported by Webkit at this time.'
+    return
+
+  if window.webkitNotifications.checkPermission() > 0
+    requestPermission()
+
+  icon = "<%= image_path "yammi_banana.png" %>"
+  title = "New Message"
+  body = msg
+  popup = window.webkitNotifications.createNotification icon,title,body
+  popup.show()
+  setTimeout( () ->
+    popup.cancel()
+  ,3000)
+  return true
 
 $(document).ready ->
+  last_msg_id = $("#last-msg-id").html()
+  message_list = $("#messages-list").html()
+  notifications_allowed = window.webkitNotifications?
 
-  if(not isEmpty($("#last-msg-id").html()) and not isEmpty($("#messages-list").html()))
-    setInterval(updateChatroom, 10000)
+  if last_msg_id? and message_list?
+    setInterval updateChatroom, 10000
+
+  if notifications_allowed
+    $("#notification").show()
+  else
+    console.log 'Desktop notifications are only supported by Webkit at this time.'
+
+  if notifications_allowed and window.webkitNotifications.checkPermission() <= 0
+    $("#notification").hide()
+    $("#toggle-notif").show().data('send-notif',true)
+  else
+    $("#notification").click( (e) ->
+      e.preventDefault()
+      if notify("test notification")
+        $("#notification").hide()
+        $("#toggle-notif").show().data('send-notif',true)
+      return false
+    )
 
   $("#msg_message").autoResize()
   $("#msg_message").keypress (event) ->
     notNewAnymore()
-    if event.ctrlKey and (event.keyCode == 13 or event.keyCode == 10)
-      $("#send-message").click()
+    $("#send-message").click() if event.ctrlKey and (event.keyCode == 13 or event.keyCode == 10)
 
   $("#send-message").click( (event) ->
     event.preventDefault()
     sendMessage()
+  )
+
+  $("#toggle-notif").click( (event) ->
+    event.preventDefault()
+    val = $(this).data('send-notif')
+    val = !val
+    $(this).data('send-notif', val)
+    x = if val then "disable" else "enable"
+    y = if val then "alert" else "success"
+    z = if val then "success" else "alert"
+    $(this).html "Temporarily " + x + " notifications"
+    $(this).removeClass(z).addClass(y)
   )
 

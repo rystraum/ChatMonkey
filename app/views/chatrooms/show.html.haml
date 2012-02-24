@@ -1,25 +1,26 @@
+.actions.grid_16{style:"text-align: center"}
+  = link_to '< Back to chatrooms list', chatrooms_path, class: "button-like"
+  = link_to 'Invite members', "#", id: "invite", class: "button-like"
+  = link_to 'Change topic', (edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom), id: "change-topic", class: "button-like"
+  = link_to 'Allow Notifications', "#", id: "notification", class: "button-like", style: "display: none"
+  = link_to 'Temporarily disable notifications', "#", id: "toggle-notif", class: "button-like", style: "display: none"
+
 #chatroom
   %p#notice= notice
-  %p.actions
-    = link_to '< Back to chatrooms list', chatrooms_path, class: "button-like"
-    = link_to 'Invite members', "#", id: "invite", class: "button-like"
-    = link_to 'Change topic', (edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom), id: "change-topic", class: "button-like"
-
-  #invite-form
-    = form_for [@chatroom, @chatroom.users.new] do |f|
-      = f.submit "Invite"
-      = f.text_field :email
-
-  #change-topic-form
-    = render 'form'
 
   %div{style: "margin-bottom: 20px"}
     %strong Topic
     %span= @chatroom.topic
+    #change-topic-form
+      = render 'form'
 
   %div{style: "margin-bottom: 20px"}
     %strong Members
     = render @chatroom.users
+    #invite-form
+      = form_for [@chatroom, @chatroom.users.new] do |f|
+        = f.submit "Invite"
+        = f.text_field :email
 
   - if @chatroom.users.count > 2
     :css
@@ -55,5 +56,6 @@
         $("#invite-form").slideToggle();
         return false;
       });
+
     });
 
