@@ -1,22 +1,26 @@
+## 1.0
+  * Release: 15 Aug 2012
+  * Officially moved chatmonkey.heroku.com to chatmonkey.info, set up redirects
+
 ## 0.9
-  * Release: 25 Feb 2011
+  * Release: 25 Feb 2012
   * Enabled desktop notifications
     * **only works on Webkit-based browsers! (i.e. Chrome or Safari)**
 
 ## 0.8.x
-  * Release: 24 Feb 2011
+  * Release: 24 Feb 2012
   * Displaying of last message sent in the chatroom list
   * Made action links look more consistent
 
 ## 0.7
-  * Release: 23 Feb 2011
+  * Release: 23 Feb 2012
   * Moved changing of topic and inviting members inline and made it unobtrusive
   * Added deleting of chatroom
     * You can find it at the full chat log page at the bottom of every chatroom
     * Burying it deep in the interface was intended to keep from accidental deletions
 
 ## 0.6.x
-  * Release: 21 Feb 2011
+  * Release: 21 Feb 2012
   * Truncated chatrooms to latest 20 messages
   * Added chatroom log link which displays all the messages separately
   * Fixed where display name isn't displaying properly on messages fetched via AJAX
@@ -24,12 +28,12 @@
   * \# of unread messages is now displayed at the title bar inside a chatroom
 
 ## 0.5
-  * Release: 19 Feb 2011
+  * Release: 19 Feb 2012
   * Added suggestions box and [list](/suggestions)
   * Monkey WANT! button
 
 ## 0.4
-  * Release: 18 Feb 2011
+  * Release: 18 Feb 2012
   * Added support for display name, you can set it by [editing your profile](/users/edit)
   * Started writing unit tests using RSpec, Factory Girl and Spork
 

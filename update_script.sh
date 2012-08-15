@@ -17,7 +17,7 @@ sed -i "s/'\(.*\)'/'$TAG'/" config/initializers/current_version.rb &&
 git add . &&
 git commit -m "version bump to $TAG" &&
 git checkout master &&
-git merge --no-ff develop &&
+git merge --no-ff development &&
 rake assets:clean &&
 rake assets:precompile &&
 git add . &&
@@ -28,7 +28,7 @@ git push --tags &&
 git checkout production &&
 git merge --no-commit master &&
 git push &&
-git checkout develop
+git checkout development
 
 echo "update completed"
 
