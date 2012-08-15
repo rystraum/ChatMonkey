@@ -6,9 +6,10 @@
 class MsgsController < ApplicationController
   respond_to :html, :json
   def create
-    @chatroom = Chatroom.find(params[:chatroom_id])
-    @msg = @chatroom.msgs.create!(params[:msg])
-    current_user.msgs << @msg
+    @chatroom = Chatroom.find params[:chatroom_id]
+    @msg      = @chatroom.msgs.build params[:msg]
+    @msg.user = current_user
+    @msg.save
 
     respond_to do |format|
       format.html { redirect_to @chatroom }
