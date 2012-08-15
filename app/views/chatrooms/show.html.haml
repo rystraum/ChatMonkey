@@ -1,3 +1,7 @@
+#chatroom-id.none= @chatroom.id
+#last-msg-id.none= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
+#current-user.none= current_user.email
+
 .actions.grid_16{style:"text-align: center"}
   = link_to '< Back to chatrooms list', chatrooms_path, class: "button-like"
   = link_to 'Invite members', "#", id: "invite", class: "button-like"
@@ -25,9 +29,6 @@
   - if @chatroom.users.count > 2
     :css
       #messages-list .other .who { display: inline }
-  #chatroom-id{:style => "display:none"}= @chatroom.id
-  #last-msg-id{:style => "display:none"}= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
-  #current-user{:style => "display:none"}= current_user.email
 
   = form_for [@chatroom,Msg.new] do |f|
     = f.text_area :message, :rows => 1, :tabindex => 1
@@ -39,23 +40,22 @@
 
   = link_to "Full message history", full_chatroom_path(@chatroom)
 
-  :javascript
-    $(document).ready(function() {
-      $.timeago.settings.allowFuture = true;
-      $("abbr.timeago").timeago();
-      $("#change-topic-form").hide();
-      $("#change-topic").click(function(e){
-        e.preventDefault();
-        $("#change-topic-form").slideToggle();
-        return false;
-      });
-
-      $("#invite-form").hide();
-      $("#invite").click(function(e){
-        e.preventDefault();
-        $("#invite-form").slideToggle();
-        return false;
-      });
-
+:javascript
+  $(document).ready(function() {
+    $.timeago.settings.allowFuture = true;
+    $("abbr.timeago").timeago();
+    $("#change-topic-form").hide();
+    $("#change-topic").click(function(e){
+      e.preventDefault();
+      $("#change-topic-form").slideToggle();
+      return false;
     });
+
+    $("#invite-form").hide();
+    $("#invite").click(function(e){
+      e.preventDefault();
+      $("#invite-form").slideToggle();
+      return false;
+    });
+  });
 
