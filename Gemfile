@@ -12,6 +12,8 @@ gem 'haml'
 gem 'inherited_resources'
 gem 'rdiscount'
 
+gem 'js-routes'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'

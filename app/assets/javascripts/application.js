@@ -9,5 +9,6 @@
 //= require autoresize
 //= require color
 //= require timeago
+//= require routes
 //= require_tree .
 
