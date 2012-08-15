@@ -11,24 +11,23 @@ last_request = ""
 
 getDateString = (date) ->
   # 2011-11-07 09:38:39
-  date.getFullYear() + "-" + add0(date.getMonth()) + "-" + add0(date.getDate())
+  "#{date.getFullYear()}-#{add0(date.getMonth())}-#{add0(date.getDate())}"
 
 getTimeString = (date) ->
-  add0(date.getHours()) + ":" + add0(date.getMinutes()) + ":" + add0(date.getSeconds())
+  "#{add0(date.getHours())}:#{add0(date.getMinutes())}:#{add0(date.getSeconds())}"
 
 add0 = (string) ->
-  if parseInt(string,10) < 10
-    string = "0" + string
-  else
-    string
+  less = parseInt(string,10) < 10
+  string = "0#{string}" if less
+  string
 
-getDateObjectString = (date) ->
-  getDateString(date) + " " + getTimeString(date)
+getDateObjectString = (date) -> "#{getDateString(date)} #{getTimeString(date)}"
 
 somethingNew = ->
   send = $("#toggle-notif").data('send-notif')
-  if ($(".latest").size() > 0)
-    document.title = "Chat: " + $(".latest").size() + " unread"
+  $size = $(".latest").size()
+  if $size > 0
+    document.title = "Chat: #{$size} unread"
     $(".latest").each( (index) ->
       $(this).data('cssBG',$(this).css('background-color')) if !($(this).data('cssBG'))
       $(this).stop().animate({
@@ -52,24 +51,21 @@ notNewAnymore = ->
   )
   document.title = "Chat"
 
-updateChatroom = () ->
+updateChatroom = ->
   chatroom_id = $("#chatroom-id").html()
-  msg_id = $("#last-msg-id").html()
-  user_email = $("#current-user").html()
-  url = '/msgs/fetch.json?msg_id=' + msg_id + '&chatroom_id=' + chatroom_id
+  msg_id      = $("#last-msg-id").html()
+  user_email  = $("#current-user").html()
+  url         = "/msgs/fetch.json?msg_id=#{msg_id}&chatroom_id=#{chatroom_id}"
   $.getJSON(url, (data) ->
     items = []
     last = msg_id
     $.each(data, (key, val) ->
-      whose = (email) -> if email == val.user.email then return 'mine' else return 'other'
-      who = -> if val.user.display_name? then return val.user.display_name else return val.user.email.split("@")[0]
-      email = '<span class="who">' + who() + ': </span>'
-      time = '<dd class="when"><abbr class="timeago" title="' + val.created_at_in_iso + '">' + val.created_at_in_local + '</abbr></dd>'
-      m = '<dl class="latest msg"><dt class="what">' + email + '<span class="notify">' + val.message + '</span></dt>' + time + '</dl>'
-      html = '<div class='+whose(user_email)+'>'+m+'</div>'
+      email = "<span class='who'>#{who(val)}:</span>"
+      time  = "<dd class='when'><abbr class='timeago' title='#{val.created_at_in_iso}'>#{val.created_at_in_local}</abbr></dd>"
+      m     = "<dl class='latest msg'><dt class='what'>#{email}<span class='notify'>#{val.message}</span></dt>#{time}</dl>"
+      html  = "<div class=#{whose(user_email, val)}>#{m}</div>"
       items.push html
-      if val.id > last
-        last = val.id
+      last  = val.id if val.id > last
     )
     $("#messages-list").prepend items.join("")
     $("#last-msg-id").html last
@@ -77,21 +73,22 @@ updateChatroom = () ->
     somethingNew()
   )
 
-sendMessage = () ->
+whose = (email, val) -> if email == val.user.email then return 'mine' else return 'other'
+who   = (val) ->
+  console.log val
+  if val.user.display_name? then return val.user.display_name else return val.user.email.split("@")[0]
+
+sendMessage = ->
   chatroom_id = $("#chatroom-id").html()
-  url = "/chatrooms/" + chatroom_id + "/msgs.js"
-  params = $("#new_msg").serialize()
-  $.post(url,params,() ->
+  url         = "/chatrooms/#{chatroom_id}/msgs.js"
+  params      = $("#new_msg").serialize()
+  $.post(url,params, ->
     $("#msg_message").val("")
     updateChatroom()
   )
 
-emptyFunction = () ->
-  return
-
-requestPermission = (callback = emptyFunction) ->
-  window.webkitNotifications.requestPermission callback
-
+emptyFunction = -> return
+requestPermission = (callback = emptyFunction) -> window.webkitNotifications.requestPermission callback
 notify = (msg) ->
   if !window.webkitNotifications
     console.log 'Desktop notifications are only supported by Webkit at this time.'
@@ -100,14 +97,14 @@ notify = (msg) ->
   if window.webkitNotifications.checkPermission() > 0
     requestPermission()
 
-  icon = "<%= image_path "yammi_banana.png" %>"
+  icon  = "<%= image_path "yammi_banana.png" %>"
   title = "New Message"
-  body = msg
+  body  = msg
   popup = window.webkitNotifications.createNotification icon,title,body
   popup.show()
-  setTimeout( () ->
+  setTimeout( ->
     popup.cancel()
-  ,3000)
+  , 3000)
   return true
 
 $(document).ready ->
