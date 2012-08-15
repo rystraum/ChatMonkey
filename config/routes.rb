@@ -1,24 +1,27 @@
 Chat::Application.routes.draw do
   get "users/create"
-  get "msgs/fetch"
 
   root :to => "pages#home"
   devise_for :users
   match "/dashboard" => "chatrooms#index", :as => :user_root
 
-  resources :users do
+  resources :users, only: [:create] do
     resources :chatrooms
   end
 
   resources :chatrooms do
-    resources :msgs
-    resources :users
+    resources :msgs, only: [:create]
+    resources :users, only: [:create]
     member do
       get "full"
     end
   end
 
-  resources :msgs
+  resources :msgs, only: [] do
+    collection do
+      get "fetch"
+    end
+  end
 
   resources :suggestions, only: [:index, :create] do
     member do
@@ -26,3 +29,4 @@ Chat::Application.routes.draw do
     end
   end
 end
+
