@@ -10,42 +10,29 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms
   # GET /chatrooms.json
+  respond_to :html, :json
   def index
     @chatrooms = current_user.chatrooms.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @chatrooms }
-    end
+    respond_with @chatrooms
   end
 
   # GET /chatrooms/1
   # GET /chatrooms/1.json
   def show
     @msgs = @chatroom.msgs.last(20).reverse
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @chatroom }
-    end
+    respond_with @chatroom
   end
 
   def full
     @msgs = @chatroom.msgs.reverse
-    respond_to do |format|
-      format.html
-      format.json { render json: @chatroom }
-    end
+    respond_with @chatroom
   end
 
   # GET /chatrooms/new
   # GET /chatrooms/new.json
   def new
     @chatroom = current_user.chatrooms.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @chatroom }
-    end
+    respond_with @chatroom
   end
 
   # GET /chatrooms/1/edit
@@ -104,3 +91,4 @@ private
     redirect_to root_path, :flash => { :notice => "You don't have permission to see this" } unless @chatroom.users.include? current_user
   end
 end
+
