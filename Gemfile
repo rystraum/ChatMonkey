@@ -22,6 +22,7 @@ end
 
 group :development do
   gem 'pry'
+  gem 'newrelic_rpm'
 end
 
 gem 'jquery-rails'
