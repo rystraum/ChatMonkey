@@ -11,4 +11,12 @@
 //= require timeago
 //= require routes
 //= require bootstrap
+//= require masonry
 //= require_tree .
+
+jQuery(document).ready(function(){
+  var $container = $('#chatrooms');
+  $container.masonry({
+    itemSelector: '.chatroom'
+  });  
+});
