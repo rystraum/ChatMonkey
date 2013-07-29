@@ -15,8 +15,9 @@
     #wrap
       #main.container
         .row
-          = render "shared/messages"
-          = yield
+          .col-lg-12
+            = render "shared/messages"
+            = yield
 
     #footer
       .container= render "shared/footer"

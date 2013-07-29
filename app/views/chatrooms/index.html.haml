@@ -1,7 +1,5 @@
 %h1 Your chatrooms
 
-#chatrooms.chatrooms.row
-  = render @chatrooms
+#chatrooms= render @chatrooms
 
 = link_to 'Create a Chatroom', new_user_chatroom_path(current_user), class: "button-like"
-
