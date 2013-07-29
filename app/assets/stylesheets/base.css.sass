@@ -17,11 +17,29 @@ a
   background-color: white
 
 body
-  background-color: $chatmonkey_brown + 50
+  background-color: $chatmonkey_brown
+
+.btn-primary
+  background-color: $chatmonkey_peach
+  border-color: $chatmonkey_peach
+  color: black
+
+.panel-primary
+  border-color: $chatmonkey_peach
+  .panel-heading
+    background-color: $chatmonkey_peach
+    border-color: $chatmonkey_peach
+
+.chatroom
+  margin-right: 1%
+  width: 24%
+  .panel-title a
+    &:hover
+      text-decoration: none
+    color: black
 
 #footer
   padding: 20px inherit
-  background-color: $chatmonkey_brown + 50
   color: white
   text-shadow: #666 0 1px 5px
   a
