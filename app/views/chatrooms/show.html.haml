@@ -2,37 +2,41 @@
 #last-msg-id.none= (not @chatroom.msgs.empty?)? @chatroom.msgs.last.id  : 0
 #current-user.none= current_user.email
 
-.actions.grid_16{style:"text-align: center"}
-  = link_to '< Back to chatrooms list', chatrooms_path, class: "button-like"
-  = link_to 'Invite members', "#", id: "invite", class: "button-like"
-  = link_to 'Change topic', (edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom), id: "change-topic", class: "button-like"
-  = link_to 'Allow Notifications', "#", id: "notification", class: "button-like", style: "display: none"
-  = link_to 'Temporarily disable notifications', "#", id: "toggle-notif", class: "button-like", style: "display: none"
+%ul.actions.nav.nav-pills.nav-justified
+  %li= link_to '< Back to chatrooms list', chatrooms_path, class: "button-like"
+  %li= link_to 'Invite members', "#", id: "invite", class: "button-like"
+  %li= link_to 'Change topic', (edit_chatroom_path(@chatroom) if current_user.chatrooms.include? @chatroom), id: "change-topic", class: "button-like"
+  %li{style: "display: none"}= link_to 'Allow Notifications', "#", id: "notification", class: "button-like"
+  %li{style: "display: none"}= link_to 'Temporarily disable notifications', "#", id: "toggle-notif", class: "button-like"
+
+%br.clear
 
 #chatroom
   %p#notice= notice
 
-  %div{style: "margin-bottom: 20px"}
+  .topic
     %strong Topic
     %span= @chatroom.topic
-    #change-topic-form
-      = render 'form'
+  
+  #change-topic-form= render 'form'
 
-  %div{style: "margin-bottom: 20px"}
+  .members
     %strong Members
+    %br
     = render @chatroom.users
-    #invite-form
-      = form_for [@chatroom, @chatroom.users.new] do |f|
-        = f.submit "Invite"
-        = f.text_field :email
+    
+  #invite-form
+    = form_for [@chatroom, @chatroom.users.new], class: "form-inline" do |f|
+      = f.submit "Invite", class: "btn btn-primary btn-small"
+      = f.text_field :email
 
   - if @chatroom.users.count > 2
     :css
       #messages-list .other .who { display: inline }
 
-  = form_for [@chatroom,Msg.new] do |f|
+  = form_for [@chatroom,Msg.new], class: "form-inline" do |f|
     = f.text_area :message, :rows => 1, :tabindex => 1
-    = f.submit "Send", :id => "send-message"
+    = f.submit "Send", :id => "send-message", class: "btn btn-primary"
 
   %p Latest 20 Messages:
   #messages-list
@@ -47,6 +51,7 @@
     $("#change-topic-form").hide();
     $("#change-topic").click(function(e){
       e.preventDefault();
+      $("div.topic").slideToggle();
       $("#change-topic-form").slideToggle();
       return false;
     });
@@ -58,4 +63,3 @@
       return false;
     });
   });
-

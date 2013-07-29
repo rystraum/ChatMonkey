@@ -121,14 +121,14 @@ $(document).ready ->
     console.log 'Desktop notifications are only supported by Webkit at this time.'
 
   if notifications_allowed and window.webkitNotifications.checkPermission() <= 0
-    $("#notification").hide()
-    $("#toggle-notif").show().data('send-notif',true)
+    $("#notification").parent().hide()
+    $("#toggle-notif").parent().show().data('send-notif',true)
   else
     $("#notification").click( (e) ->
       e.preventDefault()
       if notify("test notification")
-        $("#notification").hide()
-        $("#toggle-notif").show().data('send-notif',true)
+        $("#notification").parent().hide()
+        $("#toggle-notif").parent().show().data('send-notif',true)
       return false
     )
 
