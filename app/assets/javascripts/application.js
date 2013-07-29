@@ -10,5 +10,5 @@
 //= require color
 //= require timeago
 //= require routes
+//= require bootstrap
 //= require_tree .
-
