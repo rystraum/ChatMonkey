@@ -4,10 +4,12 @@
 # (c) Rystraum Gamonez
 
 class MsgsController < ApplicationController
+  respond_to :html, :json
   def create
-    @chatroom = Chatroom.find(params[:chatroom_id])
-    @msg = @chatroom.msgs.create!(params[:msg])
-    current_user.msgs << @msg
+    @chatroom = Chatroom.find params[:chatroom_id]
+    @msg      = @chatroom.msgs.build params[:msg]
+    @msg.user = current_user
+    @msg.save
 
     respond_to do |format|
       format.html { redirect_to @chatroom }
@@ -16,15 +18,8 @@ class MsgsController < ApplicationController
   end
 
   def fetch
-    @msgs = Msg.find_by_sql ("SELECT * FROM msgs WHERE id > '#{params[:msg_id]}' AND chatroom_id = '#{params[:chatroom_id]}'")
-    @msgs.each do |m|
-      m[:user] = User.find(m.user_id)
-      m[:created_at_in_local] = m.created_at_in_local
-      m[:created_at_in_iso] = m.created_at_in_iso
-    end
-
-    respond_to do |format|
-      format.json { render json: @msgs }
-    end
+    @msgs = Msg.where "id > ? AND chatroom_id = ?", params[:msg_id], params[:chatroom_id]
+    respond_with @msgs
   end
 end
+

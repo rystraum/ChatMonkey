@@ -1,18 +1,15 @@
-.container_16
-  .grid_4.alpha
-    %h6 Site links
-    = link_to "Suggestions list", suggestions_path
+.row
+  .col-lg-4
+    %h1 Site links
+    %ul
+      %li= link_to "Suggestions list", suggestions_path
 
-  .grid_4
-    &nbsp;
-
-  .grid_4
-    %h6 Credits!
+  .col-lg-4
+    %h1 Credits!
     %ul
       %li= link_to "Chatmonkey Logo by Iris Gem Li", "http://februarism.com", target: :_new
       %li= link_to "Banana Icon by Dimpoart of Indeepop", "http://www.iconspedia.com/icon/yammi-banana-716.html", target: :_new
       %li= link_to "Monkey 'Like' Hand by MailChimp®", "http://www.flickr.com/photos/freddievonchimp/4774020533/", target: :_new
 
-  .grid_4.omega
+  .col-lg-4
     = render "suggestions/form"
-

@@ -1,15 +1,15 @@
-.logo
-  = link_to (image_tag "chatmonkey_logo.png"), root_path
-  = Rails.application.config.chatmonkey_version
+.navbar
+  = link_to root_path, class: "navbar-brand" do
+    = image_tag "chatmonkey_logo.png"
+    %span= Rails.application.config.chatmonkey_version
 
-.menu
-  - if user_signed_in?
-    = link_to "Chatrooms", user_root_path
-    = link_to current_user.email + " (#{current_user.display_name})", edit_user_registration_path
-    = link_to 'Logout', destroy_user_session_path, :method => :delete
-  - else
-    = link_to "Sign up", new_user_registration_path
-    = link_to "Log in", new_user_session_path
+  %ul.nav.navbar-nav.pull-right
+    - if user_signed_in?
+      %li= link_to "Chatrooms", user_root_path
+      %li= link_to current_user.email + " (#{current_user.display_name})", edit_user_registration_path
+      %li= link_to 'Logout', destroy_user_session_path, :method => :delete
+    - else
+      %li= link_to "Sign up", new_user_registration_path
+      %li= link_to "Log in", new_user_session_path
 
 .clear
-

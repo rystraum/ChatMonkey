@@ -6,27 +6,55 @@ $footer_padding: 10px
 *
   font-family: "PT Sans", "Ubuntu", sans-serif
 
-html,body
+html, body
   height: 100%
+  line-height: 1.5
+
+.chatroooms
+  position: relative
+  .last_message, .users
+    clear: both
+
+  .last_message
+    blockquote 
+      padding: 0 15px 0 0
+      margin: 0
+      p
+        font-size: 90%
+
+.clear
+  clear: both
 
 a
   text-decoration: none
 
-
 #wrap
-  min-height: 100%
+  padding: 20px inherit
+  background-color: white
 
-#main
-  overflow: auto
-  padding-bottom: $footer_height + $footer_padding*2
+body
+  background-color: $chatmonkey_brown
+
+.btn-primary
+  background-color: $chatmonkey_peach
+  border-color: $chatmonkey_peach
+  color: black
+
+.panel-primary
+  border-color: $chatmonkey_peach
+  .panel-heading
+    background-color: $chatmonkey_peach
+    border-color: $chatmonkey_peach
+
+.chatroom
+  width: 99%
+  .panel-title a
+    &:hover
+      text-decoration: none
+    color: black
 
 #footer
-  position: relative
-  margin-top: -$footer_height
-  height: $footer_height
-  padding: $footer_padding
-  clear: both
-  background-color: $chatmonkey_brown + 50
+  padding: 20px inherit
   color: white
   text-shadow: #666 0 1px 5px
   a
@@ -53,29 +81,38 @@ a
     background-color: white
     color: $diy_brown
 
-.topmenu
-  text-align: right
-  background-color: rgba(0,0,0,0.7)
-  padding: 10px 0
-  margin-bottom: 20px
-  >.logo
-    @include round-corners(3px)
-    float: left
-    background-color: white
-    margin-left: 20px
-    padding: 2px
-    img
-      max-height: 20px
-  >.menu
-    >a
-      @extend .button-like
+.navbar
+  margin-bottom: 0
+  background-color: rgba(0,0,0,0.0)
 
+  .nav 
+    li
+      margin-bottom: 10px
+
+    li:first-child
+      a
+        border-left: 1px solid black
+    
+    a
+      color: black
+      background-color: $chatmonkey_peach
+      border-right: 1px solid black
+
+      &:hover
+        color: white
+
+  .navbar-brand
+    background-color: white
+    height: 50px
+    img
+      max-height: 23px
+    
 .flash
   @include round-corners
   @include box_shadow
   text-align: center
-  padding: 5px
   margin-bottom: 20px
+  color: black
 
 .error
   background-color: red
@@ -138,7 +175,8 @@ a
   background-color: $chatmonkey_brown
   box-shadow: inset rgba(0,0,0,0.25) 0 1px 2px 0
   padding: 10px
-  >a
+  color: white
+  > a
     color: white
     border-bottom: 1px solid white
 
@@ -161,3 +199,16 @@ input.want
   text-align: left
   line-height: 33px
 
+.none
+  display: none
+
+.topic, .members
+  margin-bottom: 10px
+
+@media (min-width: 992px)
+  .chatroom
+    margin-right: 1%
+    width: 24%
+
+  .navbar .nav  li
+    margin-bottom: 0

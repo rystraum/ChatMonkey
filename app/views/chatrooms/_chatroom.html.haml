@@ -1,12 +1,15 @@
-- last_message = chatroom.msgs.last
-.chatroom
-  .topic= link_to "#{chatroom.topic.titleize}", chatroom
-  - unless last_message.nil?
-    .last_message
-      %em last message sent by #{last_message.user.display_name} #{distance_of_time_in_words last_message.created_at_in_local, Time.now} ago
-      %p #{last_message}
+- last_message = chatroom.last_message
+.chatroom.panel.pull-left.panel-primary
+  .panel-heading
+    .panel-title.topic= link_to "#{chatroom.topic.titleize}", chatroom
+  = render "msgs/last_message", last_message: last_message if last_message
+  
   .users
-    with:
-    - chatroom.users.each do |u|
-      = u.email
+    with: 
+    %ul
+      - chatroom.users.each do |u|
+        %li= u.email
 
+  .panel-footer
+    = link_to "Enter", chatroom, class: "pull-right btn btn-primary"
+    .clear
