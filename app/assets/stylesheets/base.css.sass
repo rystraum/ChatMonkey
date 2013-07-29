@@ -12,20 +12,15 @@ html,body
 a
   text-decoration: none
 
-
 #wrap
-  min-height: 100%
+  padding: 20px inherit
+  background-color: white
 
-#main
-  overflow: auto
-  padding-bottom: $footer_height + $footer_padding*2
+body
+  background-color: $chatmonkey_brown + 50
 
 #footer
-  position: relative
-  margin-top: -$footer_height
-  height: $footer_height
-  padding: $footer_padding
-  clear: both
+  padding: 20px inherit
   background-color: $chatmonkey_brown + 50
   color: white
   text-shadow: #666 0 1px 5px
@@ -53,12 +48,11 @@ a
     background-color: white
     color: $diy_brown
 
-.topmenu
+#topmenu
   text-align: right
   background-color: rgba(0,0,0,0.7)
   padding: 10px 0
-  margin-bottom: 20px
-  >.logo
+  .logo
     @include round-corners(3px)
     float: left
     background-color: white
@@ -66,7 +60,8 @@ a
     padding: 2px
     img
       max-height: 20px
-  >.menu
+  
+  .menu
     >a
       @extend .button-like
 

@@ -7,18 +7,18 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     %link{href: 'http://fonts.googleapis.com/css?family=PT+Sans', rel: 'stylesheet', type: 'text/css'}
+  
   %body
-    .topmenu
-      = render "shared/topmenu"
+    #topmenu
+      .container= render "shared/topmenu"
 
     #wrap
-      #main.container_16
-        = render "shared/messages"
-
-        = yield
+      #main.container
+        .row
+          = render "shared/messages"
+          = yield
 
     #footer
-      = render "shared/footer"
+      .container= render "shared/footer"
 
   = render "shared/analytics"
-
