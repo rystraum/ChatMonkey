@@ -6,7 +6,7 @@
 class Chatroom < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :msgs
-  has_one  :last_message, class_name: Msg, readonly: true, order: "created_at DESC LIMIT 1"
+  has_one  :last_message, class_name: Msg, readonly: true, order: "created_at DESC"
 
   attr_accessible :topic
 end

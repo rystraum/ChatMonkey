@@ -1,3 +1,6 @@
 .last_message
-  %em last message sent by #{last_message.user.display_name} #{distance_of_time_in_words last_message.created_at_in_local, Time.now} ago
-  %p #{last_message}
+  %blockquote.pull-right
+    %p= last_message
+    %small
+      %cite{title: "#{last_message.user.display_name}"}= last_message.user.display_name
+      %strong #{distance_of_time_in_words last_message.created_at_in_local, Time.now} ago

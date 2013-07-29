@@ -12,7 +12,7 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms.json
   respond_to :html, :json
   def index
-    @chatrooms = current_user.chatrooms.includes(:users, :last_message).all
+    @chatrooms = current_user.chatrooms.includes(:users).all
     respond_with @chatrooms
   end
 
