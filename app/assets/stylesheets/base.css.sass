@@ -53,11 +53,6 @@ body
       text-decoration: none
     color: black
 
-@media (min-width: 992px)
-  .chatroom
-    margin-right: 1%
-    width: 24%
-
 #footer
   padding: 20px inherit
   color: white
@@ -86,22 +81,32 @@ body
     background-color: white
     color: $diy_brown
 
-#topmenu
-  text-align: right
-  padding: 10px 0
-  .logo
-    @include round-corners(3px)
-    float: left
-    background-color: white
-    margin-left: 20px
-    padding: 2px
-    img
-      max-height: 20px
-  
-  .menu
-    >a
-      @extend .button-like
+.navbar
+  margin-bottom: 0
+  background-color: rgba(0,0,0,0.0)
 
+  .nav 
+    li
+      margin-bottom: 10px
+
+    li:first-child
+      a
+        border-left: 1px solid black
+    
+    a
+      color: black
+      background-color: $chatmonkey_peach
+      border-right: 1px solid black
+
+      &:hover
+        color: white
+
+  .navbar-brand
+    background-color: white
+    height: 50px
+    img
+      max-height: 23px
+    
 .flash
   @include round-corners
   @include box_shadow
@@ -197,3 +202,10 @@ input.want
 .none
   display: none
 
+@media (min-width: 992px)
+  .chatroom
+    margin-right: 1%
+    width: 24%
+
+  .navbar .nav  li
+    margin-bottom: 0
