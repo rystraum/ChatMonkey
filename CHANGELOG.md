@@ -1,3 +1,9 @@
+## 1.1
+  * Release: 30 Jul 2013
+  * Mobile friendly!
+  * Updated gems
+  * Using Twitter Bootstrap 3.0-rc1
+
 ## 1.0
   * Release: 15 Aug 2012
   * Officially moved chatmonkey.heroku.com to chatmonkey.info, set up redirects
