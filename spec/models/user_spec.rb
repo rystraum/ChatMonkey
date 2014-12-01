@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   before :each do
-      @user = Factory.attributes_for :user
+      @user = FactoryGirl.attributes_for :user
   end
 
   context "valid attributes" do
