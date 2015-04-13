@@ -1,15 +1,17 @@
-Factory.define :user do |u|
-  u.email "user@domain.com"
-  u.password "pass.1"
-  u.password_confirmation "pass.1"
-  u.remember_me true
-  u.display_name "user name"
-end
+FactoryGirl.define do
+  factory :user do |u|
+    email "user@domain.com"
+    password "pass.1"
+    password_confirmation "pass.1"
+    remember_me true
+    display_name "user name"
+  end
 
-Factory.define :msg do |m|
-  m.message "Lorem ipsum dolor"
-end
+  factory :msg do |m|
+    message "Lorem ipsum dolor"
+  end
 
-Factory.define :chatroom do |c|
-  c.topic "Subject matter"
+  factory :chatroom do |c|
+    topic "Subject matter"
+  end
 end
